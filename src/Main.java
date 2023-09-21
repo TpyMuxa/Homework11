@@ -3,9 +3,12 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
         printJobSeparator(1);
-        taskLeapYear(2023);
+        int year = LocalDate.now().getYear();
+        taskLeapYear(year);
         printJobSeparator(2);
         taskInstall(1, 2023);
+        printJobSeparator(3);
+        System.out.println("Срок доставки: " + calculateDeliveryTimes(25) + " дней");
     }
 
     public static void printJobSeparator(int taskNumber) {
@@ -41,5 +44,20 @@ public class Main {
             default:
                 System.out.println("Приложение банка работает только на iOS или Android");
         }
+    }
+
+    public static int calculateDeliveryTimes(int deliveryDistance) {
+        int deliveryTime = 1;
+        if (deliveryDistance > 100 || deliveryDistance == 0) {
+            throw new RuntimeException("distance limit or incorrect value");
+        } else {
+            if (deliveryDistance >= 20) {
+                deliveryTime++;
+            }
+            if (deliveryDistance >= 60) {
+                deliveryTime++;
+            }
+        }
+        return deliveryTime;
     }
 }
