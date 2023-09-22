@@ -2,20 +2,20 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        printJobSeparator(1);
+        printTaskSeparator(1);
         int year = LocalDate.now().getYear();
-        taskLeapYear(year);
-        printJobSeparator(2);
-        taskInstall(1, 2023);
-        printJobSeparator(3);
-        System.out.println("Срок доставки: " + calculateDeliveryTimes(25) + " дней");
+        printIsLeapYearOrNot(year);
+        printTaskSeparator(2);
+        printSuggestionForInstallation(1, 2023);
+        printTaskSeparator(3);
+        System.out.println("Срок доставки: " + calculateDeliveryDays(25) + " дней");
     }
 
-    public static void printJobSeparator(int taskNumber) {
+    public static void printTaskSeparator(int taskNumber) {
         System.out.println("Задание " + taskNumber);
     }
 
-    public static void taskLeapYear(int year) {
+    public static void printIsLeapYearOrNot(int year) {
         if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
             System.out.println(year + " год является високосным");
         } else {
@@ -23,7 +23,7 @@ public class Main {
         }
     }
 
-    public static void taskInstall(int typeOS, int clientDeviceYear) {
+    public static void printSuggestionForInstallation(int typeOS, int clientDeviceYear) {
         int currentYear = LocalDate.now().getYear();
         boolean oldVersion = clientDeviceYear < currentYear;
         switch (typeOS) {
@@ -46,7 +46,7 @@ public class Main {
         }
     }
 
-    public static int calculateDeliveryTimes(int deliveryDistance) {
+    public static int calculateDeliveryDays(int deliveryDistance) {
         int deliveryTime = 1;
         if (deliveryDistance > 100 || deliveryDistance == 0) {
             throw new RuntimeException("distance limit or incorrect value");
